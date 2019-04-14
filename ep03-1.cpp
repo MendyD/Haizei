@@ -10,18 +10,20 @@
 #include<inttypes.h>
 int main(){
     int64_t num = 600851475143, x = 2, prime_factors;
-    while(x * x <= num){
-        if(num % x){
+    for(int i = 0; i < 1; i++){
+        while(x * x <= num){
+            if(num % x){
+                x++;
+                continue;
+            }//如果除尽则向下，若未除尽则x++向下
+            prime_factors = x;
+            while(!(num % x)){
+                num /= x;//反复连除
+            }
             x++;
-            continue;
-        }//如果除尽则向下，若未除尽则x++向下
-        prime_factors = x;
-        while(!(num % x)){
-            num /= x;//反复连除
         }
-        x++;
+        if (num - 1) prime_factors = num;
+        printf("%" PRId64 "\n", prime_factors);
     }
-    if (num - 1) prime_factors = num;
-    printf("%" PRId64 "\n", prime_factors);
     return 0;
 }
